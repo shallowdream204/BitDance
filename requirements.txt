@@ -1,0 +1,6 @@
+transformers==4.57.0
+omegaconf
+liger-kernel
+accelerate>=0.34.0
+numpy==1.26.4
+huggingface_hub==0.34.4

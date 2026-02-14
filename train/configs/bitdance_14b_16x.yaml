@@ -1,0 +1,95 @@
+model:
+  vit_patch_size: 16
+  encoder:
+    max_bs: 16
+    vt_forward_func: group # group or maxpad
+    params:
+      gan_decoder: False
+      checkpoint: null
+      ddconfig:
+          double_z: False
+          z_channels: 32
+          in_channels: 3
+          out_ch: 3
+          ch: 256
+          ch_mult: [1,1,2,2,4]
+          num_res_blocks: 4
+  llm:
+    type: qwen3
+    checkpoint: Qwen/Qwen3-14B
+  head:
+    text_pred: standard
+    vision_pred: 
+      type: diffusion_parallel_x
+      model_dim: 5120
+      num_blocks: 6
+      num_adaln: 2
+      time_shift: 1.
+      time_schedule: logit_normal
+      diff_batch_mul: 1
+      parallel_num: 16
+      P_mean: -0.8
+      P_std: 0.8
+      use_swiglu: True
+    vision_perturb: 0.1
+    pe_max_len: 2048
+
+data:
+  dataset_config_file: null
+  vit_patch_size: 16
+  num_vit_prefix_tokens: 5
+  scale_list: 16 # scale_list**2 is num_vit_pooled_tokens
+  use_native_resolution: True
+  prefetch_factor: 16
+  num_workers: 4
+  max_num_tokens_per_sample: 16384
+  expected_num_tokens: 33280
+  max_num_tokens: 37376
+  prefer_buffer_before: 16384
+  max_buffer_size: 50
+  data_seed: 42
+  validation:
+    path: data/demo_data/demo_generation_32.pkl
+    reso: 1024
+  text_cond_dropout_prob: 0.1
+
+training:
+  results_dir: results
+  hdfs_results_dir: null
+  local_hdfs_checkpoint_dir: null
+  checkpoint_dir: null
+  wandb_project: bitdance
+  wandb_name: bitdance_14b_16tok_parallel
+  wandb_runid: 0
+  wandb_resume: allow
+  wandb_offline: false
+  global_seed: 4396
+  manual_load: null
+  auto_resume: true
+  resume_from: null
+  resume_model_only: false
+  log_every: 10
+  save_every: 1000
+  validate_every: 1000
+  total_steps: 1_000_000
+  grad_accumulation_steps: 1
+
+  # optimizer
+  warmup_steps: 2000
+  lr_scheduler: constant     # constant cosine
+  lr: 1e-5
+  min_lr: 1e-7
+  beta1: 0.9
+  beta2: 0.95
+  eps: 1e-15
+  max_grad_norm: 1.0
+  loss_weight_text: 0.01
+  loss_weight_vision: 1.0
+
+  # FSDP
+  num_replicate: 1
+  num_shard: 8
+  sharding_strategy: HYBRID_SHARD   # HYBRID_SHARD FULL_SHARD NO_SHARD 
+  backward_prefetch: BACKWARD_PRE
+  cpu_offload: false
+

@@ -1,7 +1,7 @@
 # BitDance: Scaling Autoregressive Generative Models with Binary Tokens
 
 <p align="center">
-  <a href="TBD">
+  <a href="https://bitdance.csuhan.com/">
     <img
       src="https://img.shields.io/badge/Project-Page-0A66C2?logo=chromewebstore&logoColor=0A66C2"
       alt="Project Page"

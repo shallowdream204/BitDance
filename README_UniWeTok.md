@@ -15,7 +15,7 @@
   </a>
 </p>
 
-<p align="center"><img src="assets/teaser_uniwetok.webp" width="90%"></p>
+<p align="center"><img src="assets/framework_uniwetok.webp" width="40%"></p>
 
 > [Shaobin Zhuang*](https://scholar.google.com/citations?user=PGaDirMAAAAJ), [Yuang Ai*](https://shallowdream204.github.io/), [Jiaming Han*](https://csuhan.com/), [Weijia Mao](https://scholar.google.com/citations?user=S7bGBmkyNtEC), [Xiaohui Li](https://scholar.google.com/citations?hl=zh-CN&user=QqZYCEIAAAAJ), [Fangyikang Wang](https://scholar.google.com/citations?hl=zh-CN&user=j80akcEAAAAJ), [Xiao Wang](https://xiaowang.org/), [Yan Li](), [Shanchuan Lin](https://scholar.google.com/citations?hl=en&user=EDWUw7gAAAAJ), [Kun Xu](https://scholar.google.com/citations?user=MGTIEMIAAAAJ&hl=en), [Zhenheng Yang](https://scholar.google.com/citations?hl=en&user=Ds5wwRoAAAAJ), [Huaibo Huang](https://hhb072.github.io/), [Xiangyu Yue](https://xyue.io/), [Hao Chen*†‡](https://haochen-rye.github.io/), [Yali Wang†](https://scholar.google.com/citations?hl=en&user=hD948dkAAAAJ)
 >
@@ -29,6 +29,8 @@
 - **Massive Codebook**: Uses a binary codebook of size **$2^{128}$** via Group-Wise Lookup-Free Quantization.
 - **Unified Capability**: Excels at both **Generation** (DPG Score 86.63 vs FLUX.1 [Dev] 83.84) and **Understanding** (Competitive on MMMU, MME).
 - **Efficiency**: Requires remarkably low training compute (33B tokens vs 262B for comparable methods).
+
+<p align="center"><img src="assets/teaser_uniwetok.webp" width="90%"></p>
 
 <!-- ## ⚡ Quick Start -->
 

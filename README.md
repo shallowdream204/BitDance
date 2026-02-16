@@ -136,10 +136,10 @@ Note you still need to follow the instructions in [DPG Bench](https://github.com
 ## 🎰 Train
 We are organizing the code related to data loading. The training instruction of BitDance is coming soon.
 
-## 🔎 BitDance-14B-64X vs. BitDance-14B-16X
-BitDance-14B-64X is distilled from BitDance-14B-16X using a small amount of high-quality data. BitDance-14B-64X achieves approximately a 3x inference speedup while maintaining the same excellent generation quality. Here we present the side-by-side comparison between BitDance-14B-64X and BitDance-14B-16X.
+## 🔎 BitDance-14B-64x vs. BitDance-14B-16x
+BitDance-14B-64x is distilled from BitDance-14B-16x using a small amount of high-quality data. BitDance-14B-64x achieves approximately a 3x inference speedup while maintaining the same excellent generation quality. Here we present the side-by-side comparison between BitDance-14B-64x and BitDance-14B-16X.
 
-| Text Prompt     | BitDance-14B-64X     | BitDance-14B-16X |
+| Text Prompt     | BitDance-14B-64x     | BitDance-14B-16x |
 | ------------ | -------- | -------- |
 | A close-up portrait in a cinematic photography style, capturing a girl-next-door look on a sunny daytime urban street. She wears a khaki sweater, with long, flowing hair gently draped over her shoulders. Her head is turned slightly, revealing soft facial features illuminated by realistic, delicate sunlight coming from the left. The sunlight subtly highlights individual strands of her hair. The image has a Canon film-like color tone, evoking a warm, nostalgic atmosphere. | ![](assets/64x_vs_16x/1l.webp) | ![](assets/64x_vs_16x/1r.webp) |
 | A Roman-style Athena sculpture lounges elegantly on a deck chair aboard a luxury cruise ship, wearing lake-blue sunglasses and golden headphones, holding a bubble wand that blows purple bubbles. The sculpture gazes thoughtfully toward distant mountains, her expression contemplative. Crafted from finely polished marble, she is draped in a flowing, pleated robe, with skin rendered in smooth, delicate detail. The scene features only the sculpture, set against a backdrop of the deep blue sea visible through the deck railing. The entire image is bathed in warm natural sunlight, with no other figures to distract from the view.    | ![](assets/64x_vs_16x/2l.webp) | ![](assets/64x_vs_16x/2r.webp) |

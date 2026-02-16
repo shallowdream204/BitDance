@@ -16,20 +16,8 @@ BitDance-H-1X   | 1.0B |  256 |1.24 | [BitDance_H_1X.pt](https://huggingface.co/
 
 Run the following code to download all model checkpoints.
 
-```python
-from huggingface_hub import snapshot_download
-
-save_dir = "models/BitDance-ImageNet"
-repo_id = "shallowdream204/BitDance-ImageNet"
-cache_dir = save_dir + "/cache"
-
-snapshot_download(cache_dir=cache_dir,
-  local_dir=save_dir,
-  repo_id=repo_id,
-  local_dir_use_symlinks=False,
-  resume_download=True,
-  allow_patterns=["*.pt","*.json", "*.safetensors", "*.bin", "*.py", "*.md", "*.txt"],
-)
+```bash
+hf download shallowdream204/BitDance-ImageNet --local-dir models/BitDance-ImageNet --max-workers=16
 ```
 
 ## Evaluation

@@ -38,9 +38,18 @@
 
 <p align="center"><img src="assets/teaser.webp" width="90%"></p>
 
+## 🧠 Method
+BitDance is a multimodal generative model featuring a purely autoregressive architecture. It adopts a simple decoder-only architecture, built upon three key components: **(i)** a large-vocabulary binary tokenizer, **(ii)** a binary diffusion head for sampling in extremely large discrete spaces, and **(iii)** a next-patch diffusion paradigm that enables efficient multi-token prediction.
+BitDance is capable of predicting up to 64 visual tokens in parallel, offering a significant speed improvement over standard next-token prediction while maintaining excellent generation quality.
+
+We scaled BitDance's capacity through Pre-training, Continued Training, and Supervised Finetuning on large-scale multimodal tokens. It surpasses open-source autoregressive models on multiple text-to-image generation benchmarks and achieves comparable performance to proprietary models and state-of-the-art diffusion models. Notably, BitDance achieves a speedup of over 30× compared to standard next-token prediction AR models.
+
+<p align="center"><img src="assets/arch.webp" width="95%"></p>
+
 ## 🔥 News
 - **2026.2.15**: We release **UniWeTok**, An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model. Checkout the **[UniWeTok README](README_UniWeTok.md)** for more details!
-- **2026.2.14**: T2I inference code and models for BitDance are released.
+- **2026.2.15**: Code and models for class conditional generation on ImageNet are released! Check [here](imagenet_gen/README.md) for details.
+- **2026.2.14**: Text-to-image inference code and models are released!
 
 
 ## ⚡ Quick Start
@@ -63,34 +72,11 @@ We offer two models, BitDance-14B-64x and BitDance-14B-16x, which can predict 64
 | BitDance-14B-64x| 64 | 64 |1024px       | [BitDance-14B-64x](https://huggingface.co/shallowdream204/BitDance-14B-64x) |
 | BitDance-14B-16x| 16 | 256 |512&1024px       | [BitDance-14B-16x](https://huggingface.co/shallowdream204/BitDance-14B-16x) |
 
+Run the following scripts to download all models.
 
-```python
-from huggingface_hub import snapshot_download
-
-save_dir = "models/BitDance-14B-64x"
-repo_id = "shallowdream204/BitDance-14B-64x"
-cache_dir = save_dir + "/cache"
-
-snapshot_download(cache_dir=cache_dir,
-  local_dir=save_dir,
-  repo_id=repo_id,
-  local_dir_use_symlinks=False,
-  resume_download=True,
-  allow_patterns=["*.json", "*.safetensors", "*.bin", "*.py", "*.md", "*.txt"],
-)
-
-save_dir = "models/BitDance-14B-16x"
-repo_id = "shallowdream204/BitDance-14B-16x"
-cache_dir = save_dir + "/cache"
-
-snapshot_download(cache_dir=cache_dir,
-  local_dir=save_dir,
-  repo_id=repo_id,
-  local_dir_use_symlinks=False,
-  resume_download=True,
-  allow_patterns=["*.json", "*.safetensors", "*.bin", "*.py", "*.md", "*.txt"],
-)
-
+```bash
+hf download shallowdream204/BitDance-14B-64x --local-dir models/BitDance-14B-64x --max-workers=16
+hf download shallowdream204/BitDance-14B-16x --local-dir models/BitDance-14B-16x --max-workers=16
 ```
 
 3️⃣ T2I Inference (check [here](modeling/t2i_pipeline.py#L21) for the supported image resolution)
@@ -153,9 +139,7 @@ We are organizing the code related to data loading. The training instruction of 
       <tr>
         <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">Model</th>
         <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">Open Source</th>
-        <!-- DPG-Bench 移动到这里 -->
         <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">DPG-Bench</th>
-        <!-- 新增 GenEval 列 -->
         <th style="white-space: nowrap; padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa;" rowspan="2">GenEval</th>
         <th style="padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;" colspan="2">OneIG-Bench</th>
         <th style="padding: 8px; border: 1px solid #d0d7de; background-color: #f6f8fa; text-align: center;" colspan="2">TIIF-Bench</th>

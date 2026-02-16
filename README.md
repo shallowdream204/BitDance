@@ -34,7 +34,7 @@
 >
 > <sup>*</sup> Equal Contribution&nbsp;&nbsp;<sup>†</sup> Corresponding Author&nbsp;&nbsp;<sup>‡</sup> Project Lead
 >
-> For visual generation, discrete autoregressive models often struggle with poor tokenizer reconstruction, difficulties in sampling from large vocabularies, and slow token-by-token generation speeds. We present **BitDance**, which addresses these challenges via a large-vocabulary binary tokenizer, a binary diffusion head for sampling in large discrete space, and a next-patch diffusion paradigm that enables efficient multitoken prediction. BitDance is an open-source discrete autoregressive foundation model with 14B parameters, trained on large-scale multimodal tokens. While maintaining the standard language modeling paradigm for text tokens, BitDance employs a next-patch diffusion paradigm for visual tokens to predict multiple tokens in parallel—up to 64 per step. This unified multimodal framework is simple, scalable, and capable of efficiently generating high-resolution, photorealistic images.
+> For visual generation, discrete autoregressive models often struggle with poor tokenizer reconstruction, difficulties in sampling from large vocabularies, and slow token-by-token generation speeds. We present **BitDance**, which addresses these challenges via a large-vocabulary binary tokenizer, a binary diffusion head for sampling in large discrete space, and a next-patch diffusion paradigm that enables efficient multitoken prediction. BitDance is an open-source discrete autoregressive foundation model with 14B parameters, trained on large-scale multimodal tokens. While maintaining the standard language modeling paradigm for text tokens, BitDance employs a next-patch diffusion paradigm for visual tokens to predict multiple tokens in parallel—up to 64 per step. This unified multimodal framework is simple, efficient, scalable, and capable of efficiently generating high-resolution, photorealistic images.
 
 <p align="center"><img src="assets/teaser_v2.webp" width="80%"></p>
 
@@ -46,10 +46,7 @@
 
 
 ## 🧠 Method
-BitDance is a multimodal generative model featuring a purely autoregressive architecture. It adopts a simple decoder-only architecture, built upon three key components: **(i)** a large-vocabulary binary tokenizer, **(ii)** a binary diffusion head for sampling in extremely large discrete spaces, and **(iii)** a next-patch diffusion paradigm that enables efficient multi-token prediction.
-BitDance is capable of predicting up to 64 visual tokens in parallel, offering a significant speed improvement over standard next-token prediction while maintaining excellent generation quality.
-
-We scaled BitDance's capacity through Pre-training, Continued Training, and Supervised Finetuning on large-scale multimodal tokens. It surpasses open-source autoregressive models on multiple text-to-image generation benchmarks and achieves comparable performance to proprietary models and state-of-the-art diffusion models. Notably, BitDance achieves a speedup of over 30× compared to standard next-token prediction AR models.
+BitDance is a purely autoregressive multimodal generative model. It adopts a decoder-only architecture with three key components: a large-vocabulary binary tokenizer, a binary diffusion head, and a next-patch diffusion paradigm for efficient multi-token prediction. This allows BitDance to predict up to 64 visual tokens in parallel, significantly improving speed. After large-scale training, it surpasses open-source AR models on text-to-image benchmarks and achieves a speedup of over 30x compared to standard next-token prediction AR models.
 
 <p align="center"><img src="assets/arch.webp" width="95%"></p>
 

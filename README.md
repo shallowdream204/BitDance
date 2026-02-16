@@ -53,6 +53,39 @@ We scaled BitDance's capacity through Pre-training, Continued Training, and Supe
 
 <p align="center"><img src="assets/arch.webp" width="95%"></p>
 
+## 🗂️ BitDance Model Zoo
+1️⃣ Binary Visual Tokenizers
+
+We release three binary tokenizers with different downsampling ratios and vocabulary sizes. All model weights and configs can be found at [BitDance-Tokenizer](https://huggingface.co/shallowdream204/BitDance-Tokenizer).
+
+Vocabulary Size | Down Ratio | IN-256 PSNR | IN-256 SSIM  | Weights | Config | 
+|:---: |:---:|:---:|:---:|:---:|:---:|
+$2^{32}$ | 16 | 24.90 | 0.72 |[ae_d16c32](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d16c32.safetensors) | [ae_d16c32](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d16c32_config.json)
+$2^{128}$ | 32 | 23.26 | 0.67 |[ae_d32c128](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c128.safetensors) | [ae_d32c128](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c128_config.json)
+$2^{256}$ | 32 | 25.29 | 0.74 |[ae_d32c256](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c256.safetensors) | [ae_d32c256](https://huggingface.co/shallowdream204/BitDance-Tokenizer/blob/main/ae_d32c256_config.json)
+
+
+2️⃣ T2I Models
+
+We offer two models, BitDance-14B-64x and BitDance-14B-16x, which can predict 64 and 16 tokens in parallel at each step, respectively.
+|  Model  | #Token per Step | Step-1024px | Supported Size | Huggingface |
+|:-------:|:----:|:----:|:-----------:|:----:|
+| BitDance-14B-64x| 64 | 64 |1024px       | [BitDance-14B-64x](https://huggingface.co/shallowdream204/BitDance-14B-64x) |
+| BitDance-14B-16x| 16 | 256 |512&1024px       | [BitDance-14B-16x](https://huggingface.co/shallowdream204/BitDance-14B-16x) |
+
+
+3️⃣ ImageNet-trained Models
+
+To reproduce the experiments on ImageNet, check [here](imagenet_gen/README.md) for details.
+
+
+Model | Resolution| Params | Step-256px | FID  | Huggingface 
+--- |:---:|:---:|:---:|:---:|:---:|
+BitDance-B-1X | 256x256 | 242M | 256 | 1.68 | [BitDance_B_1X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_B_1X.pt)
+BitDance-B-4X   | 256x256 |260M |  64 |1.69 | [BitDance_B_4X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_B_4X.pt)
+BitDance-B-16X   | 256x256 |260M |  16 |1.91 | [BitDance_B_16X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_B_16X.pt)
+BitDance-L-1X  | 256x256 |527M |  256 |1.31 | [BitDance_L_1X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_L_1X.pt)
+BitDance-H-1X   | 256x256 |1.0B |  256 |1.24 | [BitDance_H_1X.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_H_1X.pt)
 
 ## ⚡ Quick Start
 
@@ -68,13 +101,7 @@ pip install flash_attn==2.8.2 --no-build-isolation
 
 2️⃣ Download Model Weights
 
-We offer two models, BitDance-14B-64x and BitDance-14B-16x, which can predict 64 and 16 tokens in parallel at each step, respectively.
-|  Model  | #Token per Step | Step (1024px) | Supported Size | Huggingface |
-|:-------:|:----:|:----:|:-----------:|:----:|
-| BitDance-14B-64x| 64 | 64 |1024px       | [BitDance-14B-64x](https://huggingface.co/shallowdream204/BitDance-14B-64x) |
-| BitDance-14B-16x| 16 | 256 |512&1024px       | [BitDance-14B-16x](https://huggingface.co/shallowdream204/BitDance-14B-16x) |
-
-Run the following scripts to download all models.
+Run the following scripts to download all T2I models.
 
 ```bash
 hf download shallowdream204/BitDance-14B-64x --local-dir models/BitDance-14B-64x --max-workers=16
@@ -131,13 +158,12 @@ bash scripts/eval/eval_bitdance_14b_16x.sh
 
 Note you still need to follow the instructions in [DPG Bench](https://github.com/TencentQQGYLab/ELLA#-dpg-bench) and [GenEval](https://github.com/djghosh13/geneval) to evaluate the results.
 
-2️⃣ To reproduce the experiments on ImageNet, check [here](imagenet_gen/README.md) for details.
 
 ## 🎰 Train
 We are organizing the code related to data loading. The training instruction of BitDance is coming soon.
 
 ## 🔎 BitDance-14B-64x vs. BitDance-14B-16x
-BitDance-14B-64x is distilled from BitDance-14B-16x using a small amount of high-quality data. BitDance-14B-64x achieves approximately a 3x inference speedup while maintaining the same excellent generation quality. Here we present the side-by-side comparison between BitDance-14B-64x and BitDance-14B-16X.
+BitDance-14B-64x is distilled from BitDance-14B-16x using a small amount of high-quality data. BitDance-14B-64x achieves approximately a 3x inference speedup while maintaining the same excellent generation quality. Here we present the side-by-side comparison between BitDance-14B-64x and BitDance-14B-16x.
 
 | Text Prompt     | BitDance-14B-64x     | BitDance-14B-16x |
 | ------------ | -------- | -------- |
@@ -287,7 +313,7 @@ BitDance-14B-64x is distilled from BitDance-14B-16x using a small amount of high
         <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">81.02</td>
       </tr>
       <tr>
-        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;font-weight:bold;">BitDance</td>
+        <td style="padding: 8px; border: 1px solid #d0d7de; white-space:nowrap;font-weight:bold;"><strong>BitDance</strong></td>
         <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">✓</td>
         <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">88.28</td>
         <td style="padding: 8px; border: 1px solid #d0d7de; text-align: center;">0.86</td>

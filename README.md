@@ -40,7 +40,7 @@
 
 ## 🔥 News
 - **2026.2.17**: We release **UniWeTok**, An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model. Checkout the **[UniWeTok README](README_UniWeTok.md)** for more details!
-- **2026.2.17**: We released the [website](https://bitdance.csuhan.com/), [demo](https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x), [model](https://huggingface.co/collections/shallowdream204/bitdance), and [paper](https://arxiv.org/abs/2602.14041) for BitDance.
+- **2026.2.17**: We release the [website](https://bitdance.csuhan.com/), [demo](https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x), [model](https://huggingface.co/collections/shallowdream204/bitdance), and [paper](https://arxiv.org/abs/2602.14041) for BitDance.
 
 
 

@@ -15,8 +15,14 @@
   </a>
   <a href="https://huggingface.co/collections/shallowdream204/bitdance">
     <img 
-        src="https://img.shields.io/badge/Weights-BitDance-yellow?logo=huggingface&logoColor=yellow" 
+        src="https://img.shields.io/badge/Checkpoint-BitDance-yellow?logo=huggingface&logoColor=yellow" 
         alt="BitDance Model"
+    />
+  </a>
+    <a href="https://huggingface.co/collections/BiliSakura/bitdance-diffusers">
+    <img 
+        src="https://img.shields.io/badge/Diffusers-BitDance-yellow?logo=huggingface&logoColor=yellow" 
+        alt="BitDance Diffusers"
     />
   </a>
   <a href="https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x">
@@ -39,6 +45,7 @@
 <p align="center"><img src="assets/teaser_v2.webp" width="80%"></p>
 
 ## 🔥 News
+- **2026.2.18**: Special thanks to [@Bili-Sakura](https://github.com/Bili-Sakura) for providing the [diffusers version](https://huggingface.co/collections/BiliSakura/bitdance-diffusers) for all BitDance models!
 - **2026.2.17**: We release **UniWeTok**, An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model. Checkout the **[UniWeTok README](README_UniWeTok.md)** for more details!
 - **2026.2.17**: We release the [website](https://bitdance.csuhan.com/), [demo](https://huggingface.co/spaces/shallowdream204/BitDance-14B-64x), [model](https://huggingface.co/collections/shallowdream204/bitdance), and [paper](https://arxiv.org/abs/2602.14041) for BitDance.
 
@@ -50,6 +57,7 @@ BitDance is a purely autoregressive multimodal generative model. It adopts a dec
 <p align="center"><img src="assets/arch.webp" width="95%"></p>
 
 ## 🦄 BitDance Model Zoo
+### (1) Pytorch Native Version
 1️⃣ Binary Visual Tokenizers
 
 We release three binary tokenizers with different downsampling ratios and vocabulary sizes. All model weights and configs can be found at [BitDance-Tokenizer](https://huggingface.co/shallowdream204/BitDance-Tokenizer).
@@ -83,8 +91,11 @@ BitDance-B-16x   | 256x256 |260M |  16 |1.91 | [BitDance_B_16x.pt](https://huggi
 BitDance-L-1x  | 256x256 |527M |  256 |1.31 | [BitDance_L_1x.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_L_1x.pt)
 BitDance-H-1x   | 256x256 |1.0B |  256 |1.24 | [BitDance_H_1x.pt](https://huggingface.co/shallowdream204/BitDance-ImageNet/blob/main/BitDance_H_1x.pt)
 
-## ⚡ Quick Start
+### (2) Diffusers Version
+Thanks to [@Bili-Sakura](https://github.com/Bili-Sakura), all diffusers version models can be found at [here](https://huggingface.co/collections/BiliSakura/bitdance-diffusers).
 
+## ⚡ Quick Start
+### (1) Pytorch Native Inference
 1️⃣ Create Conda Environment and Install Package
 ```bash
 git clone https://github.com/shallowdream204/BitDance.git
@@ -128,6 +139,15 @@ image = pipe.generate(
 )[0]
 
 image.save("example.png")
+```
+### (2) Diffusers Inference
+Check [here](https://huggingface.co/collections/BiliSakura/bitdance-diffusers) for detailed instructions of diffusers version.
+
+Example inference script for BitDance-14B-64x:
+```bash
+hf download BiliSakura/BitDance-14B-64x-diffusers --local-dir BitDance-14B-64x-diffusers --max-workers=16
+cd BitDance-14B-64x-diffusers
+python test_bitdance.py
 ```
 
 ## 🤗 Demo

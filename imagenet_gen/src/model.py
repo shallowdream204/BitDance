@@ -30,8 +30,8 @@ def get_model_args():
     parser.add_argument("--perturb-rate-max", type=float, default=0.3)
     parser.add_argument("--time-schedule", type=str, default='logit_normal')
     parser.add_argument("--time-shift", type=float, default=1.)
-    parser.add_argument("--P-std", type=float, default=1.)
-    parser.add_argument("--P-mean", type=float, default=0.)
+    parser.add_argument("--P-std", type=float, default=0.8)
+    parser.add_argument("--P-mean", type=float, default=-0.8)
     return parser
 
 

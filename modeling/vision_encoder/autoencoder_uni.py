@@ -634,7 +634,7 @@ class GANDecoder(nn.Module):
 class VQModel(nn.Module):
     def __init__(self,
                 ddconfig,
-                checkpoint="hdfs://harunafr/home/byte_ttdata_fr_ssd/content_understanding/hao.chen/checkpoints/we_tok/ImageNet/down16_wetok.ckpt",
+                checkpoint="",
                 gan_decoder = True,
                 ):
         super().__init__()

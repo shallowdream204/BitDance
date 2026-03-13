@@ -1,4 +1,4 @@
-# UniWeTok: An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model
+# UniWeTok: An Unified Binary Tokenizer with Codebook Size $\mathit{2^{128}}$ for Unified Multimodal Large Language Model 
 
 <p align="center">
   <a href="https://arxiv.org/abs/2602.14178">
